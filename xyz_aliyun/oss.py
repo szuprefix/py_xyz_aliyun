@@ -15,6 +15,7 @@ SECRET_KEY = A('SECRET_KEY')
 ROLE = A('ROLE')
 AP = A('AP') or "cn-shenzhen"
 BUCKET = A('BUCKET')
+DOMAIN = A('DOMAIN') or '%s.oss-%s.aliyuncs.com' % (BUCKET, AP)
 
 
 def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, expire=300,
