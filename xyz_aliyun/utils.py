@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*- 
 # author = 'denishuang'
 from __future__ import unicode_literals
+import json
 
 
 class Accessor(str):
@@ -133,7 +134,34 @@ from django.conf import settings
 
 
 def get_setting(p, c):
-    s = access(settings, 'ALIYUN.%s.%s' % (p, c))
+    s = None
+    if p:
+        s = access(settings, 'ALIYUN.%s.%s' % (p, c))
     if s is not None:
         return s
     return access(settings, 'ALIYUN.%s' % (c))
+
+
+def get_client(category='', region_id=None):
+    from aliyunsdkcore.client import AcsClient
+    A = lambda c: get_setting(category, c)
+    return AcsClient(A('SECRET_ID'), A('SECRET_KEY'), region_id or A('AP'))
+
+
+class Api(object):
+
+    def __init__(self, region_id=None, category=''):
+        self.category = category
+        self.region_id = region_id
+
+    def call(self, request_class, response_path=None, **kwargs):
+        client = get_client(self.category, region_id=self.region_id)
+        request = request_class()
+        for k, v in kwargs.items():
+            func = getattr(request, 'set_%s' % k)
+            func(v)
+        response = client.do_action_with_exception(request)
+        rs = json.loads(response.decode())
+        if response_path:
+            rs = access(rs, response_path)
+        return rs
