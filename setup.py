@@ -5,7 +5,7 @@ import sys
 
 setup(
     name="xyz-aliyun",
-    version="0.0.3",
+    version="0.0.4",
     author="XYZSaas",
     author_email="szuprefix@126.com",
     description="aliyun utils",

@@ -39,7 +39,7 @@ def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, e
     req.set_RoleArn(ROLE)
     req.set_RoleSessionName(session_name)
     req.set_Policy(policy_text)
-    req.setDurationSeconds(expire)
+    # req.setDurationSeconds(expire)
     body = clt.do_action_with_exception(req)
     d = json.loads(oss2.to_unicode(body))
 

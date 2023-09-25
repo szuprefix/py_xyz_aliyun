@@ -13,6 +13,10 @@ class EcsApi(Api):
         from aliyunsdkecs.request.v20140526.StopInstanceRequest import StopInstanceRequest
         return self.call(StopInstanceRequest, InstanceId=instance, **kwargs)
 
+    def start_instance(self, instance, **kwargs):
+        from aliyunsdkecs.request.v20140526.StartInstanceRequest import StartInstanceRequest
+        return self.call(StartInstanceRequest, InstanceId=instance, **kwargs)
+
     def list_instances(self, **kwargs):
         from aliyunsdkecs.request.v20140526.DescribeInstancesRequest import DescribeInstancesRequest
         return self.call(DescribeInstancesRequest, 'Instances.Instance', **kwargs)
