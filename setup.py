@@ -17,7 +17,9 @@ setup(
     install_requires=[
         'django>=1.11.2',
         'oss2',
-        'aliyun-python-sdk-sts'
+        'aliyun-python-sdk-sts',
+        'aliyun-python-sdk-ecs',
+        'alibabacloud_alidns20150109'
     ],
     classifiers=[
         "Environment :: Web Environment",
