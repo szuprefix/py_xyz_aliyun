@@ -5,6 +5,7 @@ from aliyunsdkess.request.v20140828.ScaleWithAdjustmentRequest import ScaleWithA
 from aliyunsdkess.request.v20140828.RemoveInstancesRequest import RemoveInstancesRequest
 from aliyunsdkess.request.v20140828.DescribeScalingInstancesRequest import DescribeScalingInstancesRequest
 from aliyunsdkess.request.v20140828.DescribeScalingGroupsRequest import DescribeScalingGroupsRequest
+from aliyunsdkess.request.v20140828.SetInstancesProtectionRequest import SetInstancesProtectionRequest
 from .utils import get_setting, Api
 
 A = lambda c: get_setting('ESS', c)
@@ -47,3 +48,6 @@ class EssApi(Api):
 
     def list_groups(self, **kwargs):
         return self.call(DescribeScalingGroupsRequest, 'ScalingGroups.ScalingGroup', **kwargs)
+
+    def protect_instance(self, ids=[], value=True):
+        return self.call(SetInstancesProtectionRequest, ScalingGroupId=self.group_id, ProtectedFromScaleIn=value, InstanceIds=ids)

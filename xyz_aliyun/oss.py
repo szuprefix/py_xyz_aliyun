@@ -18,7 +18,7 @@ BUCKET = A('BUCKET')
 DOMAIN = A('DOMAIN') or '%s.oss-%s.aliyuncs.com' % (BUCKET, AP)
 
 
-def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, expire=300,
+def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, expire=900,
                   bucket=BUCKET, method='GET', session_name='nobody'):
     # endpoint = 'http://oss-%s.aliyuncs.com' % AP
     clt = client.AcsClient(SecretId, SecretKey, AP)
@@ -39,7 +39,7 @@ def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, e
     req.set_RoleArn(ROLE)
     req.set_RoleSessionName(session_name)
     req.set_Policy(policy_text)
-    # req.setDurationSeconds(expire)
+    req.set_DurationSeconds(str(expire))
     body = clt.do_action_with_exception(req)
     d = json.loads(oss2.to_unicode(body))
 
