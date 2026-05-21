@@ -5,7 +5,7 @@ import sys
 
 setup(
     name="xyz-aliyun",
-    version="0.0.8",
+    version="0.0.9",
     author="XYZSaas",
     author_email="szuprefix@126.com",
     description="aliyun utils",
@@ -15,11 +15,11 @@ setup(
     packages=find_packages(exclude=['tests.*', 'tests', 'testproject', 'example.*', 'example']),
     include_package_data=True,
     install_requires=[
-        'django>=1.11.2',
-        'oss2',
-        'aliyun-python-sdk-sts',
-        'aliyun-python-sdk-ecs',
-        'alibabacloud_alidns20150109'
+        # 'django>=1.11.2',
+        # 'oss2',
+        # 'aliyun-python-sdk-sts',
+        # 'aliyun-python-sdk-ecs',
+        # 'alibabacloud_alidns20150109'
     ],
     classifiers=[
         "Environment :: Web Environment",

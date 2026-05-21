@@ -40,3 +40,7 @@ class EcsApi(Api):
     def describe_spot_price_history(self, **kwargs):
         from aliyunsdkecs.request.v20140526.DescribeSpotPriceHistoryRequest import DescribeSpotPriceHistoryRequest
         return self.call(DescribeSpotPriceHistoryRequest, 'SpotPrices', **kwargs)
+
+    def replace_system(self, instance, **kwargs):
+        from aliyunsdkecs.request.v20140526.ReplaceSystemDiskRequest import ReplaceSystemDiskRequest
+        return self.call(ReplaceSystemDiskRequest, InstanceId=instance, **kwargs)
