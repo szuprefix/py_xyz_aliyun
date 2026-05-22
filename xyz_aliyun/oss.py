@@ -54,3 +54,10 @@ def gen_signature(allow_prefix=None, SecretId=SECRET_ID, SecretKey=SECRET_KEY, e
     d['region'] = 'oss-%s' % AP
     d['bucket'] = bucket
     return d
+
+def sign_url(path,  SecretId=SECRET_ID, SecretKey=SECRET_KEY, bucket=BUCKET, **kwargs):
+    auth = oss2.Auth(SecretId, SecretKey)
+    endpoint = 'http://oss-%s.aliyuncs.com' % AP
+    bk = oss2.Bucket(auth, endpoint, bucket)
+    return bk.sign_url('PUT', path, 300, **kwargs)
+
