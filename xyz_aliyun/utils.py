@@ -130,10 +130,9 @@ def access(obj, path, quiet=True):
     return Accessor(path).resolve(obj, quiet=quiet)
 
 
-from django.conf import settings
-
 
 def get_setting(p, c):
+    from django.conf import settings
     s = None
     if p:
         s = access(settings, 'ALIYUN.%s.%s' % (p, c))
