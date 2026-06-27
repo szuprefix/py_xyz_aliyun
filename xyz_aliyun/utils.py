@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*- 
 # author = 'denishuang'
 from __future__ import unicode_literals
-import json
+import json, os
 
 
 class Accessor(str):
@@ -144,8 +144,11 @@ def get_setting(p, c):
 
 def get_client(category='', region_id=None):
     from aliyunsdkcore.client import AcsClient
-    A = lambda c: get_setting(category, c)
-    return AcsClient(A('SECRET_ID'), A('SECRET_KEY'), region_id or A('AP'))
+    try:
+        A = lambda c: get_setting(category, c)
+        return AcsClient(A('SECRET_ID'), A('SECRET_KEY'), region_id or A('AP'))
+    except:
+        return AcsClient(os.getenv('ALIBABA_CLOUD_ACCESS_KEY_ID'), os.getenv('ALIBABA_CLOUD_ACCESS_KEY_SECRET'))
 
 
 class Api(object):
